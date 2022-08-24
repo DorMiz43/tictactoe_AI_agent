@@ -156,10 +156,12 @@ def miniMax(board, depth, isMaximizing):
                 if score<bestScore:
                     bestScore=score
         return bestScore
+
+if __name__ == '__main__':
         
-while not checkWinner():
-    botMove()
-    playerMove()
+    while not checkWinner():
+        botMove()
+        playerMove()
 
 
 
