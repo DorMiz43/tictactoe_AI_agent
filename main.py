@@ -16,4 +16,42 @@ def printBoard(board):
     print(board[21] + '|' + board[22] + '|' + board[23] + '|' + board[24] + '|' + board[25])
     print('-+-+-+-+-')
 
-printBoard(board)
+
+def spaceIsFree(board, position):
+    if board[position] == ' ':
+        return True
+    else:
+        return False
+
+def checkWinner(board):
+    pass
+def checkDraw(board):
+    pass
+    # if ' ' in board.values():
+    #     return False
+    # else:
+    #     return True
+
+def insertLetter(letter, board, position):
+    if spaceIsFree(board, position):
+        board[position] = letter
+        printBoard(board) # print the board after each move
+        if checkDraw(board):
+            print('Draw')
+            exit()
+        if checkWinner(board):
+            if letter=='x':
+                print('Bot wins')
+                exit()
+            else:
+                print('Player 2 wins')
+                exit()
+            
+    else:
+        print('Space is already taken')
+        printBoard(board)
+        position=int(input('Choose a different position:\t'))
+        insertLetter(letter, board, position)
+
+insertLetter('o', board, 1)
+insertLetter('o', board, 1)
