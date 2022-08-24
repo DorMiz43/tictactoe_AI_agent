@@ -87,8 +87,18 @@ def playerMove():
     insertLetter('o', board, position)
 
 def botMove():
-    position = int(input('Choose a position for X:\t'))
-    insertLetter('x', board, position)
+    bestScore=-1000
+    bestMove=0
+    for key in board.keys():
+        if board[key]==' ':
+            board[key]='x'
+            score=minimax(board, 0, False)
+            board[key]=' '
+            if score>bestScore:
+                bestScore=score
+                bestMove=key
+    insertLetter('x', board, bestMove)
+    
 
 while not checkWinner():
     botMove()
