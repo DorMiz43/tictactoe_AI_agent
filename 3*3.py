@@ -138,7 +138,7 @@ def miniMax(board, depth,isMaximizing):
         return 1
     elif checkWhichMarkWon(player,board):
         return -1
-    elif checkDraw(board):
+    elif checkDraw(board) or depth==9:
         return 0
     if isMaximizing:
         bestScore=-800
