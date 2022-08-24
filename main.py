@@ -92,12 +92,99 @@ def botMove():
     for key in board.keys():
         if board[key]==' ':
             board[key]='x'
-            score=minimax(board, 0, False)
+            score=miniMax(board, 0, False)
             board[key]=' '
             if score>bestScore:
                 bestScore=score
                 bestMove=key
     insertLetter('x', board, bestMove)
+
+def checkWhichMarkWon(mark,board):
+    if board[1] == board[2] == board[3] == board[4] == board[5] == mark:
+        return True
+    elif board[6] == board[7] == board[8] == board[9] == board[10] == mark:
+        return True
+    elif board[11] == board[12] == board[13] == board[14] == board[15] == mark:
+        return True
+    elif board[16] == board[17] == board[18] == board[19] == board[20] == mark:
+        return True
+    elif board[21] == board[22] == board[23] == board[24] == board[25] == mark:
+        return True
+    elif board[1] == board[6] == board[11] == board[16] == board[21] == mark:
+        return True
+    elif board[2] == board[7] == board[12] == board[17] == board[22] == mark:
+        return True
+    elif board[3] == board[8] == board[13] == board[18] == board[23] == mark:
+        return True
+    elif board[4] == board[9] == board[14] == board[19] == board[24] == mark:
+        return True
+    elif board[5] == board[10] == board[15] == board[20] == board[25] == mark:
+        return True
+    elif board[1] == board[7] == board[13] == board[19] == board[25] == mark:
+        return True
+    elif board[5] == board[9] == board[13] == board[17] == board[21] == mark:
+        return True
+    else:
+        return False
+def miniMax(board, depth, isMaximizing):
+    if checkWhichMarkWon('x',board):
+        return 50
+    elif checkWhichMarkWon('o',board):
+        return -50
+    elif checkDraw(board):
+        return 0
+    if isMaximizing:
+        bestScore=-1000
+        bestMove=0
+        for key in board.keys():
+            if board[key]==' ':
+                board[key]='x'
+                score=miniMax(board, 0, False)
+                board[key]=' '
+                if score>bestScore:
+                    bestScore=score
+
+        return bestScore
+                    
+    else:
+        bestScore=800
+        for key in board.keys():
+            if board[key]==' ':
+                board[key]='o'
+                score=miniMax(board, 0, False)
+                board[key]=' '
+                if score<bestScore:
+                    bestScore=score
+        return bestScore
+        
+
+
+
+    # if checkWinner(board):
+    #     if isMaximizing:
+    #         return 1s
+    #     else:
+    #         return -1
+    # elif checkDraw(board):
+    #     return 0
+    # elif isMaximizing:
+    #     bestScore=-1000
+    #     for key in board.keys():
+    #         if board[key]==' ':
+    #             board[key]='x'
+    #             score=minimax(board, depth+1, False)
+    #             board[key]=' '
+    #             bestScore=max(bestScore, score)
+    #     return bestScore
+    # else:
+    #     bestScore=1000
+    #     for key in board.keys():
+    #         if board[key]==' ':
+    #             board[key]='o'
+    #             score=minimax(board, depth+1, True)
+    #             board[key]=' '
+        #         bestScore=min(bestScore, score)
+        # return bestScore
     
 
 while not checkWinner():
