@@ -1,4 +1,8 @@
 
+from audioop import avg
+from statistics import mean
+
+
 bot= 'x'
 player='o'
 
@@ -147,9 +151,159 @@ def botMove():
     insertLetter(bot, board, bestMove)
 def heurestic(board):
     
-    score=0
-                
+    scores=[]
+
+    #botloop
+    if not (board[1] == player or board[2] == player or board[3] == player or board[4] == player or board[5] == player):
+        sum = 0
+        for i in range(1,6):
+            if board[i] == bot:
+                sum += i
+        scores.append(sum/5)
+    if not (board[6] == player or board[7] == player or board[8] == player or board[9] == player or board[10] == player):
+        sum = 0
+        for i in range(6,11):
+            if board[i] == bot:
+                sum += i
+        scores.append(sum/5)
+    if not (board[11] == player or board[12] == player or board[13] == player or board[14] == player or board[15] == player):
+        sum = 0
+        for i in range(11,16):
+            if board[i] == bot:
+                sum += i
+        scores.append(sum/5)
+    if not (board[16] == player or board[17] == player or board[18] == player or board[19] == player or board[20] == player):
+        sum = 0
+        for i in range(16,21):
+            if board[i] == bot:
+                sum += i
+        scores.append(sum/5)
+    if not (board[21] == player or board[22] == player or board[23] == player or board[24] == player or board[25] == player):
+        sum = 0
+        for i in range(21,26):
+            if board[i] == bot:
+                sum += i
+        scores.append(sum/5)
+    if not (board[1] == player or board[6] == player or board[11] == player or board[16] == player or board[21] == player):
+        sum = 0
+        for i in range(1,21,5):
+            if board[i] == bot:
+                sum += i
+        scores.append(sum/5)
+    if not (board[2] == player or board[7] == player or board[12] == player or board[17] == player or board[22] == player):
+        sum = 0
+        for i in range(2,22,5):
+            if board[i] == bot:
+                sum += i
+        scores.append(sum/5)
+    if not (board[3] == player or board[8] == player or board[13] == player or board[18] == player or board[23] == player):
+        sum = 0
+        for i in range(3,23,5):
+            if board[i] == bot:
+                sum += i
+        scores.append(sum/5)
+    if not (board[4] == player or board[9] == player or board[14] == player or board[19] == player or board[24] == player):
+        sum = 0
+        for i in range(4,24,5):
+            if board[i] == bot:
+                sum += i
+        scores.append(sum/5)
+    if not (board[5] == player or board[10] == player or board[15] == player or board[20] == player or board[25] == player):
+        sum = 0
+        for i in range(5,26,5):
+            if board[i] == bot:
+                sum += i
+        scores.append(sum/5)
+    if not (board[1] == player or board[7] == player or board[13] == player or board[19] == player or board[25] == player):
+        sum = 0
+        for i in range(1,26,6):
+            if board[i] == bot:
+                sum += i
+        scores.append(sum/5)
+    if not (board[5] == player or board[9] == player or board[13] == player or board[17] == player or board[21] == player):
+        sum = 0
+        for i in range(5,22,4):
+            if board[i] == bot:
+                sum += i
+        scores.append(sum/5)
+    #playerloop
+    if not (board[1] == bot or board[2] == bot or board[3] == bot or board[4] == bot or board[5] == bot):
+        sum = 0
+        for i in range(1,6):
+            if board[i] == player:
+                sum -= i
+        scores.append(sum/5)
+    if not (board[6] == bot or board[7] == bot or board[8] == bot or board[9] == bot or board[10] == bot):
+        sum = 0
+        for i in range(6,11):
+            if board[i] == player:
+                sum -= i
+        scores.append(sum/5)
+    if not (board[11] == bot or board[12] == bot or board[13] == bot or board[14] == bot or board[15] == bot):
+        sum = 0
+        for i in range(11,16):
+            if board[i] == player:
+                sum -= i
+        scores.append(sum/5)
+    if not (board[16] == bot or board[17] == bot or board[18] == bot or board[19] == bot or board[20] == bot):
+        sum = 0
+        for i in range(16,21):
+            if board[i] == player:
+                sum -= i
+        scores.append(sum/5)
+    if not (board[21] == bot or board[22] == bot or board[23] == bot or board[24] == bot or board[25] == bot):
+        sum = 0
+        for i in range(21,26):
+            if board[i] == player:
+                sum -= i
+        scores.append(sum/5)
+    if not (board[1] == bot or board[6] == bot or board[11] == bot or board[16] == bot or board[21] == bot):
+        sum = 0
+        for i in range(1,21,5):
+            if board[i] == player:
+                sum -= i
+        scores.append(sum/5)
+    if not (board[2] == bot or board[7] == bot or board[12] == bot or board[17] == bot or board[22] == bot):
+        sum = 0
+        for i in range(2,22,5):
+            if board[i] == player:
+                sum -= i
+        scores.append(sum/5)
+    if not (board[3] == bot or board[8] == bot or board[13] == bot or board[18] == bot or board[23] == bot):
+        sum = 0
+        for i in range(3,23,5):
+            if board[i] == player:
+                sum -= i
+        scores.append(sum/5)
+    if not (board[4] == bot or board[9] == bot or board[14] == bot or board[19] == bot or board[24] == bot):
+        sum = 0
+        for i in range(4,24,5):
+            if board[i] == player:
+                sum -= i
+        scores.append(sum/5)
+    if not (board[5] == bot or board[10] == bot or board[15] == bot or board[20] == bot or board[25] == bot):
+        sum = 0
+        for i in range(5,26,5):
+            if board[i] == player:
+                sum -= i
+        scores.append(sum/5)
+    if not (board[1] == bot or board[7] == bot or board[13] == bot or board[19] == bot or board[25] == bot):
+        sum = 0
+        for i in range(1,26,6):
+            if board[i] == player:
+                sum -= i
+        scores.append(sum/5)
+    if not (board[5] == bot or board[9] == bot or board[13] == bot or board[17] == bot or board[21] == bot):
+        sum = 0
+        for i in range(5,22,4):
+            if board[i] == player:
+                sum -= i
+        scores.append(sum/5)
+
+    score = mean(scores)
+
         
+                
     return score
 
     
