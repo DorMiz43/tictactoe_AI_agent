@@ -156,6 +156,7 @@ def miniMax(board, depth,isMaximizing):
                     
     else:
         bestScore=800
+        print(2111111111111)
         for key in board.keys():
             if board[key]==' ':
                 board[key]=player
