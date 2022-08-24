@@ -1,5 +1,6 @@
-from turtle import position
 
+bot= 'x'
+player='o'
 
 board = {1: ' ', 2: ' ', 3: ' ', 4: ' ', 5: ' ',
          6: ' ', 7: ' ', 8: ' ', 9: ' ', 10: ' ',
@@ -69,7 +70,7 @@ def insertLetter(letter, board, position):
             print('Draw')
             exit()
         if checkWinner(board):
-            if letter=='x':
+            if letter==bot:
                 print('Bot wins')
                 exit()
             else:
@@ -84,20 +85,20 @@ def insertLetter(letter, board, position):
 
 def playerMove():
     position = int(input('Choose a position for O:\t'))
-    insertLetter('o', board, position)
+    insertLetter(player, board, position)
 
 def botMove():
     bestScore=-1000
     bestMove=0
     for key in board.keys():
         if board[key]==' ':
-            board[key]='x'
+            board[key]=bot
             score=miniMax(board, 0, False)
             board[key]=' '
             if score>bestScore:
                 bestScore=score
                 bestMove=key
-    insertLetter('x', board, bestMove)
+    insertLetter(bot, board, bestMove)
 
 def checkWhichMarkWon(mark,board):
     if board[1] == board[2] == board[3] == board[4] == board[5] == mark:
@@ -127,18 +128,17 @@ def checkWhichMarkWon(mark,board):
     else:
         return False
 def miniMax(board, depth, isMaximizing):
-    if checkWhichMarkWon('x',board):
+    if checkWhichMarkWon(bot,board):
         return 50
-    elif checkWhichMarkWon('o',board):
+    elif checkWhichMarkWon(player,board):
         return -50
     elif checkDraw(board):
         return 0
     if isMaximizing:
         bestScore=-1000
-        bestMove=0
         for key in board.keys():
             if board[key]==' ':
-                board[key]='x'
+                board[key]=bot
                 score=miniMax(board, 0, False)
                 board[key]=' '
                 if score>bestScore:
@@ -150,43 +150,13 @@ def miniMax(board, depth, isMaximizing):
         bestScore=800
         for key in board.keys():
             if board[key]==' ':
-                board[key]='o'
+                board[key]=player
                 score=miniMax(board, 0, False)
                 board[key]=' '
                 if score<bestScore:
                     bestScore=score
         return bestScore
         
-
-
-
-    # if checkWinner(board):
-    #     if isMaximizing:
-    #         return 1s
-    #     else:
-    #         return -1
-    # elif checkDraw(board):
-    #     return 0
-    # elif isMaximizing:
-    #     bestScore=-1000
-    #     for key in board.keys():
-    #         if board[key]==' ':
-    #             board[key]='x'
-    #             score=minimax(board, depth+1, False)
-    #             board[key]=' '
-    #             bestScore=max(bestScore, score)
-    #     return bestScore
-    # else:
-    #     bestScore=1000
-    #     for key in board.keys():
-    #         if board[key]==' ':
-    #             board[key]='o'
-    #             score=minimax(board, depth+1, True)
-    #             board[key]=' '
-        #         bestScore=min(bestScore, score)
-        # return bestScore
-    
-
 while not checkWinner():
     botMove()
     playerMove()
