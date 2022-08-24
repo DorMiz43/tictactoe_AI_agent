@@ -28,29 +28,29 @@ def spaceIsFree(board, position):
         return False
 
 def checkWinner(board):
-    if board[1] == board[2] == board[3] == board[4] == board[5] == ' ':
+    if board[1] == board[2] == board[3] == board[4] == board[5] and (board[5] != ' '):
         return True
-    elif board[6] == board[7] == board[8] == board[9] == board[10] == ' ':
+    elif (board[6] == board[7] == board[8] == board[9] == board[10] ) and (board[6] != ' '):
         return True
-    elif board[11] == board[12] == board[13] == board[14] == board[15] == ' ':
+    elif board[11] == board[12] == board[13] == board[14] == board[15] and (board[15] != ' '):
         return True
-    elif board[16] == board[17] == board[18] == board[19] == board[20] == ' ':
+    elif board[16] == board[17] == board[18] == board[19] == board[20] and (board[20] != ' '):
         return True
-    elif board[21] == board[22] == board[23] == board[24] == board[25] == ' ':
+    elif board[21] == board[22] == board[23] == board[24] == board[25] and (board[25] != ' '):
         return True
-    elif board[1] == board[6] == board[11] == board[16] == board[21] == ' ':
+    elif board[1] == board[6] == board[11] == board[16] == board[21] and (board[21] != ' '):
         return True
-    elif board[2] == board[7] == board[12] == board[17] == board[22] == ' ':
+    elif board[2] == board[7] == board[12] == board[17] == board[22] and (board[22] != ' '):
         return True
-    elif board[3] == board[8] == board[13] == board[18] == board[23] == ' ':
+    elif board[3] == board[8] == board[13] == board[18] == board[23] and (board[23] != ' '):
         return True
-    elif board[4] == board[9] == board[14] == board[19] == board[24] == ' ':
+    elif board[4] == board[9] == board[14] == board[19] == board[24] and (board[24] != ' '):
         return True
-    elif board[5] == board[10] == board[15] == board[20] == board[25] == ' ':
+    elif board[5] == board[10] == board[15] == board[20] == board[25] and (board[25] != ' '):
         return True
-    elif board[1] == board[7] == board[13] == board[19] == board[25] == ' ':
+    elif board[1] == board[7] == board[13] == board[19] == board[25] and (board[25] != ' '):
         return True
-    elif board[5] == board[9] == board[13] == board[17] == board[21] == ' ':
+    elif board[5] == board[9] == board[13] == board[17] == board[21] and (board[21] != ' '):
         return True
     else:
         return False
@@ -83,7 +83,8 @@ def insertLetter(letter, board, position):
         position=int(input('Choose a different position:\t'))
         insertLetter(letter, board, position)
 
-def playerMove():
+def playerMove(board):
+    printBoard(board)
     position = int(input('Choose a position for O:\t'))
     insertLetter(player, board, position)
 
@@ -93,7 +94,7 @@ def botMove():
     for key in board.keys():
         if board[key]==' ':
             board[key]=bot
-            score=miniMax(board, 0, False)
+            score=miniMax(board, False)
             board[key]=' '
             if score>bestScore:
                 bestScore=score
@@ -127,7 +128,12 @@ def checkWhichMarkWon(mark,board):
         return True
     else:
         return False
-def miniMax(board, depth, isMaximizing):
+def miniMax(board, isMaximizing,depth=10,i=0):
+    
+    i+=1
+    print(i)
+    depth-=1
+
     if checkWhichMarkWon(bot,board):
         return 50
     elif checkWhichMarkWon(player,board):
@@ -136,22 +142,29 @@ def miniMax(board, depth, isMaximizing):
         return 0
     if isMaximizing:
         bestScore=-1000
+        
+        print(depth)
         for key in board.keys():
             if board[key]==' ':
                 board[key]=bot
                 score=miniMax(board, 0, False)
                 board[key]=' '
+                
                 if score>bestScore:
                     bestScore=score
 
         return bestScore
                     
     else:
+        print(2)
         bestScore=800
         for key in board.keys():
+            depth-=1
+            if depth==0:
+                isMaximizing=True
             if board[key]==' ':
                 board[key]=player
-                score=miniMax(board, 0, False)
+                score=miniMax(board, False)
                 board[key]=' '
                 if score<bestScore:
                     bestScore=score
@@ -159,9 +172,10 @@ def miniMax(board, depth, isMaximizing):
 
 if __name__ == '__main__':
         
-    while not checkWinner():
+    while not checkWinner(board):
+        playerMove(board)
         botMove()
-        playerMove()
+        
 
 
 
