@@ -22,11 +22,7 @@ def printBoard(board):
 
 
 
-def spaceIsFree(board, position):
-    if board[position] == ' ':
-        return True
-    else:
-        return False
+
 
 def insertLetter(letter, board, position):
     if spaceIsFree(board, position):
@@ -105,6 +101,11 @@ def checkDraw(board):
 
 
 def insertLetter(letter, board, position):
+    if position not in board.keys():
+        print('Invalid position')
+        printBoard(board)
+        position=int(input('Choose a different position:\t'))
+        insertLetter(letter, board, position)
     if spaceIsFree(board, position):
         board[position] = letter
         printBoard(board) # print the board after each move
