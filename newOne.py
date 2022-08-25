@@ -34,6 +34,44 @@ def spaceIsFree(board, position):
     else:
         return False
 
+<<<<<<< HEAD
+=======
+def insertLetter(letter, board, position):
+    if spaceIsFree(board, position):
+        board[position] = letter
+        printBoard(board) # print the board after each move
+        if checkDraw(board):
+            print('Draw')
+            exit()
+        if checkWinner(board):
+            if letter==bot:
+                print('Bot wins')
+                exit()
+            else:
+                print('Player 2 wins')
+                exit()
+
+            
+    else:
+        print('Space is already taken')
+        printBoard(board)
+        position=int(input('Choose a different position:\t'))
+        insertLetter(letter, board, position)
+
+def printBoard(board):
+    print("_________")
+    print("*********")
+    print(board[1] + '|' + board[2] + '|' + board[3] + '|' + board[4] + '|' + board[5])
+    print('-+-+-+-+-')
+    print(board[6] + '|' + board[7] + '|' + board[8] + '|' + board[9] + '|' + board[10])
+    print('-+-+-+-+-')
+    print(board[11] + '|' + board[12] + '|' + board[13] + '|' + board[14] + '|' + board[15])
+    print('-+-+-+-+-')
+    print(board[16] + '|' + board[17] + '|' + board[18] + '|' + board[19] + '|' + board[20])
+    print('-+-+-+-+-')
+    print(board[21] + '|' + board[22] + '|' + board[23] + '|' + board[24] + '|' + board[25])
+    print('-+-+-+-+-')
+>>>>>>> refs/remotes/origin/main
 
 
 
