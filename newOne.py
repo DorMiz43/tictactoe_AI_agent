@@ -57,6 +57,8 @@ def insertLetter(letter, board, position):
         insertLetter(letter, board, position)
 
 def printBoard(board):
+    print("_________")
+    print("*********")
     print(board[1] + '|' + board[2] + '|' + board[3] + '|' + board[4] + '|' + board[5])
     print('-+-+-+-+-')
     print(board[6] + '|' + board[7] + '|' + board[8] + '|' + board[9] + '|' + board[10])

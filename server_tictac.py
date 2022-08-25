@@ -10,11 +10,12 @@ app=Flask(__name__)#create an app instance
 # def hello_world():
 #     return f"hey, and welcome to our TicTacToeGame"
 
-@app.route('/',methods=['GET','POST'])#route to handle the default home page)
+@app.route('/')#route to handle the default home page)
 def start_game():
-    print("start_game")
-    
-    return game()
+    # print("startgame")
+    return "start_game"
+
+    # return game()
 
 
 if __name__=='__main__':
