@@ -34,46 +34,8 @@ def spaceIsFree(board, position):
     else:
         return False
 
-def insertLetter(letter, board, position):
-    if spaceIsFree(board, position):
-        board[position] = letter
-        printBoard(board) # print the board after each move
-        if checkDraw(board):
-            print('Draw')
-            exit()
-        if checkWinner(board):
-            if letter==bot:
-                print('Bot wins')
-                exit()
-            else:
-                print('Player 2 wins')
-                exit()
-
-            
-    else:
-        print('Space is already taken')
-        printBoard(board)
-        position=int(input('Choose a different position:\t'))
-        insertLetter(letter, board, position)
-
-def printBoard(board):
-    print(board[1] + '|' + board[2] + '|' + board[3] + '|' + board[4] + '|' + board[5])
-    print('-+-+-+-+-')
-    print(board[6] + '|' + board[7] + '|' + board[8] + '|' + board[9] + '|' + board[10])
-    print('-+-+-+-+-')
-    print(board[11] + '|' + board[12] + '|' + board[13] + '|' + board[14] + '|' + board[15])
-    print('-+-+-+-+-')
-    print(board[16] + '|' + board[17] + '|' + board[18] + '|' + board[19] + '|' + board[20])
-    print('-+-+-+-+-')
-    print(board[21] + '|' + board[22] + '|' + board[23] + '|' + board[24] + '|' + board[25])
-    print('-+-+-+-+-')
 
 
-def spaceIsFree(board, position):
-    if board[position] == ' ':
-        return True
-    else:
-        return False
 
 def checkWinner(board):
     if board[1] == board[2] == board[3] == board[4] == board[5] and (board[5] != ' '):
@@ -111,7 +73,12 @@ def checkDraw(board):
 
 
 def insertLetter(letter, board, position):
-    if spaceIsFree(board, position):
+    if position not in board.keys():
+        print('Invalid position')
+        printBoard(board)
+        position = int(input('Choose a different position:\t'))
+        insertLetter(letter, board, position)
+    elif spaceIsFree(board, position):
         board[position] = letter
         printBoard(board) # print the board after each move
         if checkDraw(board):
@@ -135,6 +102,7 @@ def playerMove(board):
     printBoard(board)
     print()
     position = int(input('Choose a position for O:\t'))
+    
     insertLetter(player, board, position)
 
 def botMove():
