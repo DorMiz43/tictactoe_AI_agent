@@ -369,6 +369,10 @@ def miniMax(board, depth,isMaximizing):
                     bestScore=score
         return bestScore
 
+def game():
+        while not checkWinner(board):
+            playerMove(board)
+            botMove()
 if __name__ == '__main__':
         
     while not checkWinner(board):
