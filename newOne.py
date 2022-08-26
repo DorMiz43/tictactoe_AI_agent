@@ -11,7 +11,7 @@ board = {1: ' ', 2: ' ', 3: ' ', 4: ' ', 5: ' ',
          16: ' ',17: ' ',18: ' ',19: ' ',20: ' ',
          21: ' ',22: ' ',23: ' ',24: ' ',25: ' '}
 
-def printBoard(board):
+def printBoard(board=board):
     print("_________")
     print(board[1] + '|' + board[2] + '|' + board[3] + '|' + board[4] + '|' + board[5])
     print('-+-+-+-+-')
@@ -24,6 +24,9 @@ def printBoard(board):
     print(board[21] + '|' + board[22] + '|' + board[23] + '|' + board[24] + '|' + board[25])
     print('-+-+-+-+-')
     print("*********")
+
+    borad = f"_________\n{board[1]}|{board[2]}|{board[3]}|{board[4]}|{board[5]}\n-+-+-+-+-\n{board[6]}|{board[7]}|{board[8]}|{board[9]}|{board[10]}\n-+-+-+-+-\n{board[11]}|{board[12]}|{board[13]}|{board[14]}|{board[15]}\n-+-+-+-+-\n{board[16]}|{board[17]}|{board[18]}|{board[19]}|{board[20]}\n-+-+-+-+-\n{board[21]}|{board[22]}|{board[23]}|{board[24]}|{board[25]}\n-+-+-+-+-\n*********"
+    return borad
 
 
 
@@ -339,11 +342,13 @@ def game():
         while not checkWinner(board):
             playerMove(board)
             botMove()
+
+
+
+
 if __name__ == '__main__':
         
-    while not checkWinner(board):
-        playerMove(board)
-        botMove()
+    game()
         
 
 
